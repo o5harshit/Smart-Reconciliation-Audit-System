@@ -7,6 +7,7 @@ import {
   TOGGLE_USER_STATUS,
   UPDATE_USER_ROLE
 } from "@/utils/constants";
+import { TablePageShimmer } from "@/components/Shimmer";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -61,7 +62,7 @@ const Users = () => {
   };
 
   if (loading) {
-    return <p className="p-6">Loading users...</p>;
+    return <TablePageShimmer />;
   }
 
   return (

@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { apiClient } from "@/lib/api-client";
 import { LOGIN_ROUTE, SIGNUP_ROUTE } from "@/utils/constants";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "@/redux/slices/authSlice";
 
@@ -15,7 +14,6 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const Auth = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

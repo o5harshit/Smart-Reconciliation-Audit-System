@@ -16,6 +16,7 @@ import {
   SelectValue
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { DashboardShimmer } from "@/components/Shimmer";
 
 const formatJobLabel = (job) => {
   const fileName =
@@ -104,7 +105,7 @@ export default function ReconciliationGlobalDashboard() {
     };
   }, [activeFiltersKey, selectedJobId]);
 
-  if (loading) return <p className="p-6">Loading dashboard...</p>;
+  if (loading) return <DashboardShimmer />;
   if (!data) return null;
 
   const completedJobs = jobs.filter((job) => job.status === "COMPLETED");

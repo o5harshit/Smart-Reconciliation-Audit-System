@@ -6,6 +6,7 @@ import { loginSuccess, logout } from "./redux/slices/authSlice";
 import { useEffect, useState } from "react";
 import { GET_USER_INFO } from "./utils/constants";
 import Navbar from "./components/Navbar";
+import { FullPageShimmer } from "./components/Shimmer";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ function App() {
     }
   }, [dispatch, userInfo]);
   if (loading) {
-    return <div>Loading...</div>;
+    return <FullPageShimmer />;
   }
   return (
     <>

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import AuditTimeline from "@/components/AuditTimeline";
+import { TablePageShimmer } from "@/components/Shimmer";
 
 export default function AuditLogsPage() {
   const [logs, setLogs] = useState([]);
@@ -75,7 +76,7 @@ export default function AuditLogsPage() {
       </div>
 
       {loading ? (
-        <p>Loading audit logs...</p>
+        <TablePageShimmer />
       ) : groupedTimelines.length === 0 ? (
         <div className="border rounded-md p-6 text-sm text-muted-foreground">
           No audit logs found. If this data existed before audit tracking was added, click

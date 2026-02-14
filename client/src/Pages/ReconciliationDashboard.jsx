@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { apiClient } from "@/lib/api-client";
 import { GET_ALL_JOBS } from "@/utils/constants";
 import { useNavigate } from "react-router-dom";
+import { TablePageShimmer } from "@/components/Shimmer";
 
 export default function ReconciliationDashboard() {
   const [jobs, setJobs] = useState([]);
@@ -27,7 +28,7 @@ export default function ReconciliationDashboard() {
   }, []);
   
 
-  if (loading) return <p className="p-6">Loading uploads...</p>;
+  if (loading) return <TablePageShimmer />;
 
   const getDisplayName = (job) => {
     if (job.originalFileName) return job.originalFileName;

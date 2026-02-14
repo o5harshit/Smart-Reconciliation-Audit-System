@@ -65,13 +65,13 @@ const BrowseRouter = createBrowserRouter([
           <PrivateRoute>
             <RecordsPage />
           </PrivateRoute>
-        )
+        ),
       },
       {
         path: "audit-logs",
         element: (
           <PrivateRoute>
-            <RoleRoute allowedRoles={["admin","analyst"]}>
+            <RoleRoute allowedRoles={["admin", "analyst"]}>
               <AuditLogsPage />
             </RoleRoute>
           </PrivateRoute>
@@ -87,11 +87,11 @@ const BrowseRouter = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/",
+        element: <Navigate to="/auth" replace />,
+      },
     ],
-  },
-  {
-    path: "/",
-    element: <Navigate to="/auth" replace />,
   },
   {
     path: "*",

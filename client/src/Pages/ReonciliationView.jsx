@@ -12,6 +12,7 @@ import {
   GET_RECORD_AUDIT_TIMELINE,
   MANUAL_CORRECT_RECORD
 } from "@/utils/constants";
+import { DashboardShimmer, TimelineShimmer } from "@/components/Shimmer";
 
 export default function ReconciliationView() {
   const { uploadJobId } = useParams();
@@ -123,7 +124,7 @@ export default function ReconciliationView() {
   };
 
   if (!uploadJobId) return <p className="p-6">No upload selected</p>;
-  if (loading) return <p className="p-6">Loading reconciliation...</p>;
+  if (loading) return <DashboardShimmer />;
   if (!data) return null;
 
   return (
@@ -202,7 +203,7 @@ export default function ReconciliationView() {
         </div>
 
         <div>
-          {timelineLoading ? <p>Loading timeline...</p> : <AuditTimeline timeline={timeline} />}
+          {timelineLoading ? <TimelineShimmer /> : <AuditTimeline timeline={timeline} />}
         </div>
       </div>
     </div>

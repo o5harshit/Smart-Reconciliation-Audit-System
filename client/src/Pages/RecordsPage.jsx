@@ -9,6 +9,7 @@ import {
 } from "@/utils/constants";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import RecordSectionTable from "@/components/RecordSectionTable";
+import { TablePageShimmer } from "@/components/Shimmer";
 
 export default function RecordsPage() {
   const user = useSelector((state) => state.auth.user);
@@ -72,7 +73,7 @@ export default function RecordsPage() {
     }
   };
 
-  if (loading) return <p className="p-6">Loading records...</p>;
+  if (loading) return <TablePageShimmer />;
 
   return (
     <div className="p-6 space-y-6">
@@ -125,4 +126,3 @@ export default function RecordsPage() {
     </div>
   );
 }
-
