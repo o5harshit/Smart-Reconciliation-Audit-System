@@ -134,6 +134,14 @@ VITE_SERVER_URL=http://localhost:8747
 
 ---
 
+## Demo Credentials
+
+Admin login:
+- Email: `srivastavaharshit400@gmail.com`
+- Password: `Admin@123`
+
+---
+
 ## API Surface (High-Level)
 
 - Auth:
@@ -206,4 +214,3 @@ Suggested test:
 4. Edit/delete a record from Records page and verify:
    - reconciliation status changes
    - audit logs/timeline entries are created
-
