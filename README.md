@@ -174,6 +174,15 @@ Admin login:
 
 ---
 
+## API Documentation (Postman)
+
+Postman collection file:
+- `postman/Smart-Reconciliation-System.postman_collection.json`
+
+Import this collection into Postman, set `baseUrl` if needed, run `Auth -> Login` first, then call protected endpoints.
+
+---
+
 ## Assumptions
 
 - CSV headers are mappable to mandatory fields: `transactionId`, `amount`, `referenceNumber`, `date`.

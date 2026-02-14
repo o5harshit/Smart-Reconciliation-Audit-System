@@ -1,0 +1,262 @@
+{
+  "info": {
+    "name": "Smart Reconciliation System API",
+    "_postman_id": "8d7fe8be-1a65-4e3f-86c6-45b814cb91e2",
+    "description": "Postman collection for Smart Reconciliation & Audit System APIs.\\n\\nAuth is cookie-based (jwt cookie). Run Login first, then test protected endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8747"
+    },
+    {
+      "key": "uploadJobId",
+      "value": ""
+    },
+    {
+      "key": "recordId",
+      "value": ""
+    },
+    {
+      "key": "userId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Signup",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test.user@example.com\",\n  \"password\": \"Password@123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/signup"
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"srivastavaharshit400@gmail.com\",\n  \"password\": \"Admin@123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/login"
+          }
+        },
+        {
+          "name": "Get Logged In User",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/auth/user-info"
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/auth/logout"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin - User Management",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/auth/user"
+          }
+        },
+        {
+          "name": "Update User Role",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"analyst\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/user/{{userId}}/role"
+          }
+        },
+        {
+          "name": "Toggle User Status",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/auth/user/{{userId}}/status"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Upload",
+      "item": [
+        {
+          "name": "Upload Preview",
+          "request": {
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": ""
+                }
+              ]
+            },
+            "url": "{{baseUrl}}/api/uploads/preview"
+          }
+        },
+        {
+          "name": "Submit Mapping",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"uploadJobId\": \"{{uploadJobId}}\",\n  \"mapping\": {\n    \"transactionId\": \"transactionId\",\n    \"amount\": \"amount\",\n    \"referenceNumber\": \"referenceNumber\",\n    \"date\": \"date\"\n  }\n}"
+            },
+            "url": "{{baseUrl}}/api/uploads/map"
+          }
+        },
+        {
+          "name": "Get All Upload Jobs",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/uploads/upload-jobs"
+          }
+        },
+        {
+          "name": "Get Upload Job By ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/uploads/upload-jobs/{{uploadJobId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reconciliation",
+      "item": [
+        {
+          "name": "Global Summary",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/reconciliation/global-summary"
+          }
+        },
+        {
+          "name": "Reconciliation By Upload Job",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/reconciliation/GetReconciliationDataById/{{uploadJobId}}"
+          }
+        },
+        {
+          "name": "Manual Record Correction",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionId\": \"T100\",\n  \"amount\": 150,\n  \"referenceNumber\": \"R100\",\n  \"transactionDate\": \"2026-02-14\"\n}"
+            },
+            "url": "{{baseUrl}}/api/reconciliation/records/{{recordId}}/manual-correction"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Records",
+      "item": [
+        {
+          "name": "Get Records (Grouped By File)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/record"
+          }
+        },
+        {
+          "name": "Update Record",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionId\": \"T201\",\n  \"amount\": 210,\n  \"referenceNumber\": \"R201\",\n  \"transactionDate\": \"2026-02-13\"\n}"
+            },
+            "url": "{{baseUrl}}/api/record/{{recordId}}"
+          }
+        },
+        {
+          "name": "Delete Record",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/record/{{recordId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Audit",
+      "item": [
+        {
+          "name": "Get Audit Logs",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/audit/logs"
+          }
+        },
+        {
+          "name": "Get Record Audit Timeline",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/audit/record/{{recordId}}/timeline"
+          }
+        }
+      ]
+    }
+  ]
+}
+
