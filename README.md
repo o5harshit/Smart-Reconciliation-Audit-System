@@ -142,6 +142,13 @@ Admin login:
 
 ---
 
+## Demo Video
+
+Project walkthrough video:
+- https://drive.google.com/file/d/1ehJASSz1H9IEXZtui8r7DyHxoQvqzdrr/view?usp=sharing
+
+---
+
 ## API Surface (High-Level)
 
 - Auth:
